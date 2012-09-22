@@ -15,10 +15,12 @@ public class CucumberFactoryBuilder {
         String sourcePackage = sourceClass.substring(0, sourceClass.lastIndexOf("."));
 
         List<Object> featureTests = new ArrayList<Object>();
-        for (File feature : new File[]{baseDirectory}) {
-            List<String> features = addFeature(sourcePackage, feature);
-            featureTests.add(new CucumberTestImpl(sourcePackage, features));
-        }
+//        for (File feature : new File[]{baseDirectory}) {
+            List<String> features = addFeature(sourcePackage, baseDirectory);
+            for (String feature : features) {
+                featureTests.add(new CucumberTestImpl(sourcePackage, feature));
+            }
+//        }
 
         return featureTests.toArray();
     }
