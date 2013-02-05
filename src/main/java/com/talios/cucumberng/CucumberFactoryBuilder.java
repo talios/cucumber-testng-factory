@@ -26,7 +26,7 @@ public class CucumberFactoryBuilder {
     }
 
     private static List<String> addFeature(String basePacakge, File feature) {
-        String basePackagePath = basePacakge.replaceAll("\\.", File.separator);
+        String basePackagePath = basePacakge.replace(".", File.separator);
         List<String> featureTests = new ArrayList<String>();
         if (!feature.exists()) {
             throw new IllegalArgumentException("feature file does not exist");
