@@ -16,7 +16,9 @@ public class TestFactory {
 
     @Factory
     public Object[] create() {
-        return CucumberFactoryBuilder.create(new File("src"));
+        return new CucumberFactoryBuilder()
+                .addOption("--format", "html:target/cucumber")
+                .create(new File("src"));
     }
 
     @Given("^the iTunes file (.*)$")
