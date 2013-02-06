@@ -18,7 +18,8 @@ public class CucumberFactoryBuilder {
 //        for (File feature : new File[]{baseDirectory}) {
             List<String> features = addFeature(sourcePackage, baseDirectory);
             for (String feature : features) {
-                featureTests.add(new CucumberTestImpl(sourcePackage, feature));
+                featureTests.add(new CucumberTestImpl(sourcePackage, feature)
+                        .addOption("--format", "html:cucumber"));
             }
 //        }
 
