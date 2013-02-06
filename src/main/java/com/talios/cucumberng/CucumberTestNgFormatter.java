@@ -99,7 +99,7 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
-    public void syntaxError(String state, String event, List<String> legalEvents, String uri, int line) {
+    public void syntaxError(String s, String s2, List<String> strings, String s3, Integer integer) {
     }
 
     @Override
@@ -110,6 +110,10 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     @Override
     public void close() {
         out.close();
+    }
+
+    @Override
+    public void before(Match match, Result result) {
     }
 
     @Override
@@ -147,17 +151,20 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
-    public void embedding(String s, InputStream inputStream) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void after(Match match, Result result) {
     }
+
 
     @Override
     public void write(String s) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void match(Match match) {
+    }
+
+    @Override
+    public void embedding(String s, byte[] bytes) {
     }
 
 }

@@ -8,11 +8,10 @@
     <packaging>jar</packaging>
 
     <name>cucumber-testng-factory</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cucumber-java.version>1.0.1</cucumber-java.version>
+        <cucumber-java.version>1.1.2</cucumber-java.version>
     </properties>
 
     <repositories>

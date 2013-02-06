@@ -1,10 +1,10 @@
 package com.talios;
 
 import com.talios.cucumberng.CucumberFactoryBuilder;
-import cucumber.annotation.en.Given;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
-import cucumber.runtime.PendingException;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import cucumber.api.PendingException;
 import org.testng.annotations.Factory;
 
 import java.io.File;
@@ -35,7 +35,5 @@ public class TestFactory {
         // Express the Regexp above with the code you wish you had
         throw new PendingException();
     }
-
-
 
 }
