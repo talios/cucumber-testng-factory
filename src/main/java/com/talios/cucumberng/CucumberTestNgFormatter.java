@@ -10,13 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
-* Created with IntelliJ IDEA.
-* User: amrk
-* Date: 28/02/12
-* Time: 10:27 PM
-* To change this template use File | Settings | File Templates.
-*/
 public class CucumberTestNgFormatter implements Formatter, Reporter {
 
     private final NiceAppendable out;
@@ -91,6 +84,10 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
+    public void syntaxError(String s, String s2, List<String> strings, String s3, Integer integer) {
+    }
+
+    @Override
     public void done() {
         steps.clear();
     }
@@ -135,6 +132,14 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
+    public void before(Match match, Result result) {
+    }
+
+    @Override
+    public void after(Match match, Result result) {
+    }
+
+    @Override
     public void write(String s) {
     }
 
@@ -142,38 +147,8 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     public void match(Match match) {
     }
 
-	@Override
-	public void syntaxError(
-		String s,
-		String s2,
-		List<String> strings,
-		String s3,
-		Integer integer
-	)
-	{
+    @Override
+    public void embedding(String s, byte[] bytes) {
 	}
 
-	@Override
-	public void before(
-		Match match,
-		Result result
-	)
-	{
-	}
-
-	@Override
-	public void after(
-		Match match,
-		Result result
-	)
-	{
-	}
-
-	@Override
-	public void embedding(
-		String s,
-		byte[] bytes
-	)
-	{
-	}
 }
