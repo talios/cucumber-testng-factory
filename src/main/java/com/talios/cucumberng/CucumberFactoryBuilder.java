@@ -6,11 +6,20 @@ import java.util.List;
 
 public class CucumberFactoryBuilder {
 
-    public static Object[] create() {
+    private List<Option> options = new ArrayList<Option>();
+
+    public CucumberFactoryBuilder addOption(String key, String value) {
+
+        options.add(new Option(key,value));
+        return this;
+    }
+
+    public Object[] create() {
         return create(new File("."));
     }
 
-    public static Object[] create(final File baseDirectory) {
+    public Object[] create(final File baseDirectory) {
+        CucumberTestImpl test;
         String sourceClass = findStackTraceSource().getClassName();
         String sourcePackage = sourceClass.substring(0, sourceClass.lastIndexOf("."));
 
@@ -18,7 +27,12 @@ public class CucumberFactoryBuilder {
 //        for (File feature : new File[]{baseDirectory}) {
             List<String> features = addFeature(sourcePackage, baseDirectory);
             for (String feature : features) {
-                featureTests.add(new CucumberTestImpl(sourcePackage, feature));
+
+                test = new CucumberTestImpl(sourcePackage, feature);
+                for(Option opt : options) {
+                      test.addOption(opt.key,opt.value);
+                }
+                featureTests.add(test);
             }
 //        }
 
@@ -26,7 +40,7 @@ public class CucumberFactoryBuilder {
     }
 
     private static List<String> addFeature(String basePacakge, File feature) {
-        String basePackagePath = basePacakge.replaceAll("\\.", File.separator);
+        String basePackagePath = basePacakge.replace(".", File.separator);
         List<String> featureTests = new ArrayList<String>();
         if (!feature.exists()) {
             throw new IllegalArgumentException("feature file does not exist");
@@ -57,5 +71,15 @@ public class CucumberFactoryBuilder {
           }
           return null;
       }
+
+    private class Option {
+        public String key;
+        public String value;
+
+        public Option(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
 
 }

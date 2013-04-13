@@ -4,7 +4,7 @@ import com.talios.cucumberng.CucumberFactoryBuilder;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.runtime.PendingException;
+import cucumber.api.PendingException;
 import org.testng.annotations.Factory;
 
 import java.io.File;
@@ -16,7 +16,9 @@ public class TestFactory {
 
     @Factory
     public Object[] create() {
-        return CucumberFactoryBuilder.create(new File("src"));
+        return new CucumberFactoryBuilder()
+                .addOption("--format", "html:target/cucumber")
+                .create(new File("src"));
     }
 
     @Given("^the iTunes file (.*)$")
@@ -35,7 +37,5 @@ public class TestFactory {
         // Express the Regexp above with the code you wish you had
         throw new PendingException();
     }
-
-
 
 }
