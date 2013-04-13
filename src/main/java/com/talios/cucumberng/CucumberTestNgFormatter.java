@@ -3,17 +3,9 @@ package com.talios.cucumberng;
 import gherkin.formatter.Formatter;
 import gherkin.formatter.NiceAppendable;
 import gherkin.formatter.Reporter;
-import gherkin.formatter.model.Background;
-import gherkin.formatter.model.Examples;
-import gherkin.formatter.model.Feature;
-import gherkin.formatter.model.Match;
-import gherkin.formatter.model.Result;
-import gherkin.formatter.model.Scenario;
-import gherkin.formatter.model.ScenarioOutline;
-import gherkin.formatter.model.Step;
+import gherkin.formatter.model.*;
 import org.testng.ITestResult;
 
-import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -99,10 +91,6 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
-    public void syntaxError(String state, String event, List<String> legalEvents, String uri, int line) {
-    }
-
-    @Override
     public void done() {
         steps.clear();
     }
@@ -147,17 +135,45 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
-    public void embedding(String s, InputStream inputStream) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public void write(String s) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void match(Match match) {
     }
 
+	@Override
+	public void syntaxError(
+		String s,
+		String s2,
+		List<String> strings,
+		String s3,
+		Integer integer
+	)
+	{
+	}
+
+	@Override
+	public void before(
+		Match match,
+		Result result
+	)
+	{
+	}
+
+	@Override
+	public void after(
+		Match match,
+		Result result
+	)
+	{
+	}
+
+	@Override
+	public void embedding(
+		String s,
+		byte[] bytes
+	)
+	{
+	}
 }
