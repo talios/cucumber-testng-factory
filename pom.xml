@@ -3,7 +3,7 @@
 
     <groupId>com.theoryinpractise</groupId>
     <artifactId>cucumber-testng-factory</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>TestNG Integration for the Cucumeber-JVM Testing Framework</description>
     <url>https://github.com/talios/cucumber-testng-factory</url>
@@ -19,7 +19,7 @@
         <connection>scm:git:git@github.com:talios/cucumber-testng-factory.git</connection>
         <developerConnection>scm:git:git@github.com:talios/cucumber-testng-factory.git</developerConnection>
         <url>http://gotohal.net</url>
-      <tag>cucumber-testng-factory-1.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <developers>
