@@ -1,17 +1,13 @@
 package com.talios.cucumberng;
 
-import cucumber.formatter.HTMLFormatter;
-import cucumber.io.FileResourceLoader;
-import cucumber.runtime.Runtime;
 import cucumber.runtime.RuntimeOptions;
-import gherkin.formatter.Formatter;
+import cucumber.runtime.io.FileResourceLoader;
 import org.testng.ITest;
 import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.util.Arrays;
+import java.util.Properties;
 
 import static org.testng.Assert.fail;
 
@@ -34,15 +30,9 @@ public class CucumberTestImpl implements ITest {
 
         CucumberTestNgFormatter formatter = new CucumberTestNgFormatter(System.out);
 
-        String[] gluePaths = {basePackage};
-
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        RuntimeOptions runtimeOptions = new RuntimeOptions();
-        runtimeOptions.featurePaths = Arrays.asList(feature);
-        runtimeOptions.glue = Arrays.asList(gluePaths);
-        runtimeOptions.formatters = Arrays.asList((Formatter) formatter, new HTMLFormatter(new File("target/cucumber")) );
-
-        Runtime runtime = new Runtime(new FileResourceLoader(), classLoader, runtimeOptions);
+        RuntimeOptions runtimeOptions = new RuntimeOptions( new Properties(), "--format", "html:output", "--glue", basePackage, feature );
+		cucumber.runtime.Runtime runtime = new cucumber.runtime.Runtime(new FileResourceLoader(), classLoader, runtimeOptions);
         runtime.writeStepdefsJson();
         runtime.run();
 
