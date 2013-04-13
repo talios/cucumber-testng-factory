@@ -5,6 +5,8 @@
     <artifactId>cucumber-testng-factory</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <description>TestNG Integration for the Cucumeber-JVM Testing Framework</description>
+    <url>https://github.com/talios/cucumber-testng-factory</url>
 
     <name>cucumber-testng-factory</name>
 
