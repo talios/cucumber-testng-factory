@@ -10,13 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
-* Created with IntelliJ IDEA.
-* User: amrk
-* Date: 28/02/12
-* Time: 10:27 PM
-* To change this template use File | Settings | File Templates.
-*/
 public class CucumberTestNgFormatter implements Formatter, Reporter {
 
     private final NiceAppendable out;
@@ -105,10 +98,6 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
-    public void before(Match match, Result result) {
-    }
-
-    @Override
     public void result(Result result) {
         //addTestNgAttribute(RESULTS, result);
         String timing = result.getDuration() != null ?
@@ -143,9 +132,12 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
     }
 
     @Override
-    public void after(Match match, Result result) {
+    public void before(Match match, Result result) {
     }
 
+    @Override
+    public void after(Match match, Result result) {
+    }
 
     @Override
     public void write(String s) {
@@ -157,25 +149,6 @@ public class CucumberTestNgFormatter implements Formatter, Reporter {
 
     @Override
     public void embedding(String s, byte[] bytes) {
-		Match match,
-		Result result
-	)
-	{
 	}
 
-	@Override
-	public void after(
-		Match match,
-		Result result
-	)
-	{
-	}
-
-	@Override
-	public void embedding(
-		String s,
-		byte[] bytes
-	)
-	{
-	}
 }

@@ -8,37 +8,6 @@ public class CucumberFactoryBuilder {
 
     private List<Option> options = new ArrayList<Option>();
 
-    public CucumberFactoryBuilder addOption(String key, String value) {
-
-        options.add(new Option(key,value));
-        return this;
-    }
-
-    public Object[] create() {
-        return create(new File("."));
-    }
-
-    public Object[] create(final File baseDirectory) {
-        CucumberTestImpl test;
-        String sourceClass = findStackTraceSource().getClassName();
-        String sourcePackage = sourceClass.substring(0, sourceClass.lastIndexOf("."));
-
-        List<Object> featureTests = new ArrayList<Object>();
-//        for (File feature : new File[]{baseDirectory}) {
-            List<String> features = addFeature(sourcePackage, baseDirectory);
-            for (String feature : features) {
-
-                test = new CucumberTestImpl(sourcePackage, feature);
-                for(Option opt : options) {
-                      test.addOption(opt.key,opt.value);
-                }
-                featureTests.add(test);
-            }
-//        }
-
-        return featureTests.toArray();
-    }
-
     private static List<String> addFeature(String basePacakge, File feature) {
         String basePackagePath = basePacakge.replace(".", File.separator);
         List<String> featureTests = new ArrayList<String>();
@@ -62,15 +31,44 @@ public class CucumberFactoryBuilder {
         return featureTests;
     }
 
-      private static StackTraceElement findStackTraceSource() {
-          StackTraceElement[] elements = new Exception().fillInStackTrace().getStackTrace();
-          for (StackTraceElement element : elements) {
-              if (!CucumberFactoryBuilder.class.getName().equals(element.getClassName())) {
-                  return element;
-              }
-          }
-          return null;
-      }
+    private static StackTraceElement findStackTraceSource() {
+        StackTraceElement[] elements = new Exception().fillInStackTrace().getStackTrace();
+        for (StackTraceElement element : elements) {
+            if (!CucumberFactoryBuilder.class.getName().equals(element.getClassName())) {
+                return element;
+            }
+        }
+        return null;
+    }
+
+    public CucumberFactoryBuilder addOption(String key, String value) {
+
+        options.add(new Option(key, value));
+        return this;
+    }
+
+    public Object[] create() {
+        return create(new File("."));
+    }
+
+    public Object[] create(final File baseDirectory) {
+        CucumberTestImpl test;
+        String sourceClass = findStackTraceSource().getClassName();
+        String sourcePackage = sourceClass.substring(0, sourceClass.lastIndexOf("."));
+
+        List<Object> featureTests = new ArrayList<Object>();
+        List<String> features = addFeature(sourcePackage, baseDirectory);
+        for (String feature : features) {
+
+            test = new CucumberTestImpl(sourcePackage, feature);
+            for (Option opt : options) {
+                test.addOption(opt.key, opt.value);
+            }
+            featureTests.add(test);
+        }
+
+        return featureTests.toArray();
+    }
 
     private class Option {
         public String key;
